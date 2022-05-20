@@ -1,6 +1,4 @@
-
 import csv
-from typing import IO, TextIO
 
 
 class Date:

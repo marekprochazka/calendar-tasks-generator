@@ -1,8 +1,4 @@
-from asyncio import events
-from tkinter import EventType
-from turtle import st
 from event import *
-from typing import List
 from itertools import cycle
 import copy
 import sys
