@@ -14,7 +14,7 @@ class Main:
     def __init__(self, start_date: Date, num_weeks: int, persons: list) -> None:
         self.start_date = start_date
         self.end_date = copy.deepcopy(start_date)
-        self.end_date.add_days(5)
+        self.end_date.add_days(7)
         self.num_weeks = num_weeks
         self.persons = persons
 

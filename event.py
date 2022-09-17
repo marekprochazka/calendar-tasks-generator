@@ -75,7 +75,6 @@ class Event:
             "End Date": str(self.end_date),
             "End Time": '',
             "All day event": 'TRUE',
-            "Description": self.task.description,
         }
 
     def write_to_csv(self, file: csv.DictWriter) -> None:
