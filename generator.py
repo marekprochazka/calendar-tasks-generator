@@ -20,12 +20,19 @@ class Main:
 
     def __generate_events(self) -> None:
         person_iterator = cycle(self.persons)
+        activities = cycle([TaskList.dishes, TaskList.dishes, TaskList.floor, TaskList.hygiene_places, TaskList.vacuuming])
         for week in range(self.num_weeks):
-            self.events.append(Event(copy.deepcopy(self.start_date), copy.deepcopy(self.end_date), TaskList.dishes, next(person_iterator)))
-            self.events.append(Event(copy.deepcopy(self.start_date), copy.deepcopy(self.end_date), TaskList.dishes, next(person_iterator)))
-            self.events.append(Event(copy.deepcopy(self.start_date), copy.deepcopy(self.end_date), TaskList.floor, next(person_iterator)))
-            self.events.append(Event(copy.deepcopy(self.start_date), copy.deepcopy(self.end_date), TaskList.hygiene_places, next(person_iterator)))
-            self.events.append(Event(copy.deepcopy(self.start_date), copy.deepcopy(self.end_date), TaskList.vacuuming, next(person_iterator)))
+            # self.events.append(Event(copy.deepcopy(self.start_date), copy.deepcopy(self.end_date), TaskList.dishes, next(person_iterator)))
+            # self.events.append(Event(copy.deepcopy(self.start_date), copy.deepcopy(self.end_date), TaskList.dishes, next(person_iterator)))
+            # self.events.append(Event(copy.deepcopy(self.start_date), copy.deepcopy(self.end_date), TaskList.floor, next(person_iterator)))
+            # self.events.append(Event(copy.deepcopy(self.start_date), copy.deepcopy(self.end_date), TaskList.hygiene_places, next(person_iterator)))
+            # self.events.append(Event(copy.deepcopy(self.start_date), copy.deepcopy(self.end_date), TaskList.vacuuming, next(person_iterator)))
+            for _ in range(len(self.persons)):
+                self.events.append(Event(copy.deepcopy(self.start_date), copy.deepcopy(self.end_date), next(activities), next(person_iterator)))
+
+            if len(self.persons) == 5:
+                next(activities)
+
             self.start_date.add_days(7)
             self.end_date.add_days(7)
 
@@ -41,7 +48,7 @@ class Main:
 
 
 def main():
-    persons = ['Mara', 'Luke', 'Adam' ,'Skleny', 'Filda', 'Feela']
+    persons = ['Mara', 'Feela', 'Radim',  'Adam', 'Anička']
     start_date = Date(int(sys.argv[1]), int(sys.argv[2]), int(sys.argv[3]))
     num_weeks = int(int(sys.argv[4]))
     main = Main(start_date, num_weeks, persons)

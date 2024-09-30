@@ -46,7 +46,7 @@ class Task:
 
 class TaskList:
     dishes: Task = Task(
-        "Nádobí", "Každý večer si udělat čas a umít nádobí, které se nahromadilo v kuchyni, případně i vyčistit okolí uzná-li za vhodné.")
+        "Kuchyň", "Každý večer si udělá čas na zkontrolování kuchyně a bude-li potřeba, tak upozorní autory nepořádku, aby po sobě uklidili. Na konci týdne udělá větší čistění linky, stolu a okolí, než se začne uklízet podlaha.")
     floor: Task = Task(
         "Podlaha", "Na konci týdne, než odjede domů si udělá čas na to, aby umyl podlahu.")
     hygiene_places: Task = Task(
