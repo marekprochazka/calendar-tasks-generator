@@ -20,7 +20,15 @@ class Main:
 
     def __generate_events(self) -> None:
         person_iterator = cycle(self.persons)
-        activities = cycle([TaskList.dishes, TaskList.dishes, TaskList.floor, TaskList.hygiene_places, TaskList.vacuuming])
+        activities = cycle(
+            [
+                TaskList.dishes,
+                TaskList.dishes,
+                TaskList.floor,
+                TaskList.hygiene_places,
+                TaskList.vacuuming,
+            ]
+        )
         for week in range(self.num_weeks):
             # self.events.append(Event(copy.deepcopy(self.start_date), copy.deepcopy(self.end_date), TaskList.dishes, next(person_iterator)))
             # self.events.append(Event(copy.deepcopy(self.start_date), copy.deepcopy(self.end_date), TaskList.dishes, next(person_iterator)))
@@ -28,7 +36,14 @@ class Main:
             # self.events.append(Event(copy.deepcopy(self.start_date), copy.deepcopy(self.end_date), TaskList.hygiene_places, next(person_iterator)))
             # self.events.append(Event(copy.deepcopy(self.start_date), copy.deepcopy(self.end_date), TaskList.vacuuming, next(person_iterator)))
             for _ in range(len(self.persons)):
-                self.events.append(Event(copy.deepcopy(self.start_date), copy.deepcopy(self.end_date), next(activities), next(person_iterator)))
+                self.events.append(
+                    Event(
+                        copy.deepcopy(self.start_date),
+                        copy.deepcopy(self.end_date),
+                        next(activities),
+                        next(person_iterator),
+                    )
+                )
 
             if len(self.persons) == 5:
                 next(activities)
@@ -38,22 +53,30 @@ class Main:
 
     def make_output(self) -> None:
         self.__generate_events()
-        
-        with open('calendar_data.csv', 'w', newline='', encoding='utf-8') as csvfile:
-            headers = ('Subject','Start Date','Start Time','End Date','End Time','All day event','Description')
-            writer = csv.DictWriter(csvfile, fieldnames=headers, delimiter=',')
+
+        with open("calendar_data.csv", "w", newline="", encoding="utf-8") as csvfile:
+            headers = (
+                "Subject",
+                "Start Date",
+                "Start Time",
+                "End Date",
+                "End Time",
+                "All day event",
+                "Description",
+            )
+            writer = csv.DictWriter(csvfile, fieldnames=headers, delimiter=",")
             writer.writeheader()
             for event in self.events:
                 event.write_to_csv(writer)
 
 
 def main():
-    persons = ['Mara', 'Feela', 'Radim',  'Adam', 'Anička']
+    persons = ["Maka", "Feela", "Radim", "Monty", "Anička"]
     start_date = Date(int(sys.argv[1]), int(sys.argv[2]), int(sys.argv[3]))
     num_weeks = int(int(sys.argv[4]))
     main = Main(start_date, num_weeks, persons)
     main.make_output()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
